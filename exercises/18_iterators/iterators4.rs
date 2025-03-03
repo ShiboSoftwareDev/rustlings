@@ -1,4 +1,6 @@
 fn factorial(num: u64) -> u64 {
+    let vector: Vec<u64> = (1..=num).collect();
+    vector.iter().product()
     // TODO: Complete this function to return the factorial of `num` which is
     // defined as `1 * 2 * 3 * … * num`.
     // https://en.wikipedia.org/wiki/Factorial
