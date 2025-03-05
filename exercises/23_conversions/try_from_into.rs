@@ -28,14 +28,79 @@ enum IntoColorError {
 impl TryFrom<(i16, i16, i16)> for Color {
     type Error = IntoColorError;
 
-    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {}
+    fn try_from(tuple: (i16, i16, i16)) -> Result<Self, Self::Error> {
+        let r = u8::try_from(tuple.0);
+        let g= u8::try_from(tuple.1);
+        let b= u8::try_from(tuple.2);
+
+        let red = match r {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let green= match g {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let blue= match b {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+
+        Ok(Color{red,green,blue})
+        
+    }
 }
 
 // TODO: Array implementation.
 impl TryFrom<[i16; 3]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {}
+    fn try_from(arr: [i16; 3]) -> Result<Self, Self::Error> {
+        let r = u8::try_from(arr[0]);
+        let g= u8::try_from(arr[1]);
+        let b= u8::try_from(arr[2]);
+
+        let red = match r {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let green= match g {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let blue= match b {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+
+        Ok(Color{red,green,blue})
+        
+
+    }
 }
 
 // TODO: Slice implementation.
@@ -43,7 +108,44 @@ impl TryFrom<[i16; 3]> for Color {
 impl TryFrom<&[i16]> for Color {
     type Error = IntoColorError;
 
-    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {}
+    fn try_from(slice: &[i16]) -> Result<Self, Self::Error> {
+        if slice.iter().len() != 3{
+            return Err(IntoColorError::BadLen)
+        }
+
+        let r = u8::try_from(slice[0]);
+        let g= u8::try_from(slice[1]);
+        let b= u8::try_from(slice[2]);
+
+        let red = match r {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let green= match g {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+        let blue= match b {
+            Ok(n)=>{
+                n
+            }
+            Err(_)=>{
+                return Err(IntoColorError::IntConversion)
+            }
+        };
+
+        Ok(Color{red,green,blue})
+        
+
+    }
 }
 
 fn main() {
